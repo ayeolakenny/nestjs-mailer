@@ -28,6 +28,7 @@
     "@nestjs/platform-express": "^8.0.0",
     "dotenv": "^16.0.0",
     "handlebars": "^4.7.7",
+    "lodash": "^4.17.21",
     "nodemailer": "^6.7.2",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
