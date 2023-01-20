@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, Req, Request } from '@nestjs/common';
 import { AppService } from './app.service';
 import { IpAddress } from './decorators/ip';
 import { SendMailParams } from './dto/mail-params.dto';
@@ -8,8 +8,9 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get()
-  send(@IpAddress() ipAddress) {
-    console.log(ipAddress);
+  send(@Req() req: Request) {
+    // @ts-ignore
+    console.log(req.ip);
     return 'Hello';
   }
 
