@@ -30,7 +30,7 @@ export class AppController {
   }
 
   @Post()
-  sendMail(@Body() input: SendMailParams) {
+  sendMail(@Body() input: SendMailParams, @Req() req: Request) {
     // @ts-ignore
     var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
     console.log(fullUrl);
