@@ -1,6 +1,5 @@
 import { Body, Controller, Get, Post, Req, Request } from '@nestjs/common';
 import { AppService } from './app.service';
-import { IpAddress } from './decorators/ip';
 import { SendMailParams } from './dto/mail-params.dto';
 import * as dns from 'dns';
 
@@ -11,8 +10,10 @@ export class AppController {
   @Get()
   send(@Req() req: Request) {
     // @ts-ignore
-    // console.log(req.ip);
     // return 'Hello';
+    // @ts-ignore
+    var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
+    console.log(fullUrl);
 
     dns.lookup('aptos-launch.org', (error, address, family) => {
       // if an error occurs, eg. the hostname is incorrect!
@@ -30,6 +31,10 @@ export class AppController {
 
   @Post()
   sendMail(@Body() input: SendMailParams) {
+    // @ts-ignore
+    var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
+    console.log(fullUrl);
+
     return this.appService.sendMail(input);
   }
 }
