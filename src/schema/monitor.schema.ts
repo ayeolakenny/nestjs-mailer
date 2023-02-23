@@ -6,9 +6,6 @@ export type MonitorDocument = HydratedDocument<Monitor>;
 @Schema()
 export class Monitor {
   @Prop()
-  _id: string;
-
-  @Prop()
   url: string;
 
   @Prop()

@@ -25,12 +25,13 @@ export class AppService {
     return true;
   }
 
-  async getSites(): Promise<Monitor[]> {
+  async getSites() {
     return this.monitorModel.find();
   }
 
   async deleteSite(siteId: number): Promise<Boolean> {
-    await this.monitorModel.findByIdAndDelete(siteId);
+    console.log(siteId);
+    this.monitorModel.find({ _id: siteId }).remove().exec();
     return true;
   }
 
