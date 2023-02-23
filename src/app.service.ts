@@ -4,7 +4,7 @@ import { CreateSite, SendMailParams } from './dto/mail-params.dto';
 import { Monitor, MonitorDocument } from './schema/monitor.schema';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { daysToUnix } from './utils/date';
+import { daysToUnix, unixToDaysLeft } from './utils/date';
 import { Cron, CronExpression } from '@nestjs/schedule';
 
 @Injectable()
@@ -37,8 +37,30 @@ export class AppService {
       .catch((err) => console.log(err));
   }
 
-  @Cron(CronExpression.EVERY_10_SECONDS)
-  runEvery10Seconds() {
-    console.log('Every 10 seconds');
+  @Cron(CronExpression.EVERY_DAY_AT_NOON)
+  async checkExpiredSites() {
+    const sites = await this.monitorModel.find();
+    for (let site of sites) {
+      const expires = unixToDaysLeft(Number(site.expires));
+      if (expires === 1) {
+        this.sendMail({
+          from: 'Kehinde',
+          html: `${site.url} would expire in one day`,
+          subject: 'Site Expiry',
+          text: `${site.url} would expire in one day`,
+          to: 'kazeemawesome@gmail.com',
+        });
+      }
+
+      if (expires <= 0) {
+        this.sendMail({
+          from: 'Kehinde',
+          html: `${site.url} hosting has expired`,
+          subject: 'Site Expiry',
+          text: `${site.url} hosting has expired`,
+          to: 'kazeemawesome@gmail.com',
+        });
+      }
+    }
   }
 }
