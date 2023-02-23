@@ -29,6 +29,11 @@ export class AppService {
     return this.monitorModel.find();
   }
 
+  async deleteSite(siteId: number): Promise<Boolean> {
+    await this.monitorModel.findByIdAndDelete(siteId);
+    return true;
+  }
+
   sendMail(input: SendMailParams) {
     const { from, html, subject, text, to } = input;
     this.mailerService

@@ -3,6 +3,7 @@ import {
   Body,
   Controller,
   Get,
+  Param,
   Post,
   Req,
   Request,
@@ -55,12 +56,18 @@ export class AppController {
     return this.appService.createSite(input);
   }
 
+  @Post('site/:id')
+  deleteSite(@Param() params) {
+    return this.appService.deleteSite(params.id);
+  }
+
   @Get('site')
   async getSites() {
     let modified = [];
     const sites = await this.appService.getSites();
     for (let site of sites) {
       modified.push({
+        id: site._id,
         url: site.url,
         expires: unixToDaysLeft(Number(site.expires)),
       });
