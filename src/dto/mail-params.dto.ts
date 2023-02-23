@@ -5,3 +5,8 @@ export class SendMailParams {
   text: string;
   html: string;
 }
+
+export class CreateSite {
+  days: number;
+  url: string;
+}

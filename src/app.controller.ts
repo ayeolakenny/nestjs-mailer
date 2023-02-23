@@ -8,8 +8,9 @@ import {
   Request,
 } from '@nestjs/common';
 import { AppService } from './app.service';
-import { SendMailParams } from './dto/mail-params.dto';
-import * as dns from 'dns';
+import { CreateSite, SendMailParams } from './dto/mail-params.dto';
+import { unixToDaysLeft } from './utils/date';
+// import * as dns from 'dns';
 
 @Controller('mail')
 export class AppController {
@@ -47,5 +48,23 @@ export class AppController {
     // console.log(fullUrl);
 
     return this.appService.sendMail(input);
+  }
+
+  @Post('create-site')
+  createSite(@Body() input: CreateSite) {
+    return this.appService.createSite(input);
+  }
+
+  @Get('site')
+  async getSites() {
+    let modified = [];
+    const sites = await this.appService.getSites();
+    for (let site of sites) {
+      modified.push({
+        url: site.url,
+        expires: unixToDaysLeft(Number(site.expires)),
+      });
+    }
+    return modified;
   }
 }

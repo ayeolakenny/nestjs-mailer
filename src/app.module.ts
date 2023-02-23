@@ -3,7 +3,9 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { MailerModule } from '@nestjs-modules/mailer';
 import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handlebars.adapter';
+import { MongooseModule } from '@nestjs/mongoose';
 import * as dotenv from 'dotenv';
+import { Monitor, MonitorSchema } from './schema/monitor.schema';
 
 dotenv.config();
 
@@ -30,6 +32,8 @@ dotenv.config();
         },
       },
     }),
+    MongooseModule.forRoot(process.env.MONGO_URL),
+    MongooseModule.forFeature([{ name: Monitor.name, schema: MonitorSchema }]),
   ],
   controllers: [AppController],
   providers: [AppService],
