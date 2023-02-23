@@ -5,6 +5,7 @@ import { Monitor, MonitorDocument } from './schema/monitor.schema';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { daysToUnix } from './utils/date';
+import { Cron, CronExpression } from '@nestjs/schedule';
 
 @Injectable()
 export class AppService {
@@ -34,5 +35,10 @@ export class AppService {
       .sendMail({ to, from, subject, text, html })
       .then((success) => console.log(success))
       .catch((err) => console.log(err));
+  }
+
+  @Cron(CronExpression.EVERY_10_SECONDS)
+  runEvery10Seconds() {
+    console.log('Every 10 seconds');
   }
 }

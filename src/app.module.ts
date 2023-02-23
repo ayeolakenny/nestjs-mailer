@@ -6,6 +6,7 @@ import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handleba
 import { MongooseModule } from '@nestjs/mongoose';
 import * as dotenv from 'dotenv';
 import { Monitor, MonitorSchema } from './schema/monitor.schema';
+import { ScheduleModule } from '@nestjs/schedule';
 
 dotenv.config();
 
@@ -32,6 +33,7 @@ dotenv.config();
         },
       },
     }),
+    ScheduleModule.forRoot(),
     MongooseModule.forRoot(process.env.MONGO_URL),
     MongooseModule.forFeature([{ name: Monitor.name, schema: MonitorSchema }]),
   ],
