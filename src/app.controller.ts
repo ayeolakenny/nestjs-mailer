@@ -58,7 +58,6 @@ export class AppController {
 
   @Post('site/:id')
   deleteSite(@Param() params) {
-    console.log(params.id);
     return this.appService.deleteSite(params.id);
   }
 

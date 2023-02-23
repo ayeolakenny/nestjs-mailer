@@ -30,7 +30,6 @@ export class AppService {
   }
 
   async deleteSite(siteId: number): Promise<Boolean> {
-    console.log(siteId);
     this.monitorModel.find({ _id: siteId }).remove().exec();
     return true;
   }
