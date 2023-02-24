@@ -9,7 +9,7 @@ import {
   Request,
 } from '@nestjs/common';
 import { AppService } from './app.service';
-import { CreateSite, SendMailParams } from './dto/mail-params.dto';
+import { CreateSite, SendMailParams, UpdateSite } from './dto/mail-params.dto';
 import { unixToDaysLeft } from './utils/date';
 // import * as dns from 'dns';
 
@@ -59,6 +59,11 @@ export class AppController {
   @Post('site/:id')
   deleteSite(@Param() params) {
     return this.appService.deleteSite(params.id);
+  }
+
+  @Post('site/update/:id')
+  updateSite(@Param() params, @Body() input: UpdateSite) {
+    return this.appService.updateSite(params.id, input);
   }
 
   @Get('site')

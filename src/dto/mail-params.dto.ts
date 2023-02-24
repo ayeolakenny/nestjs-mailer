@@ -10,3 +10,7 @@ export class CreateSite {
   days: number;
   url: string;
 }
+
+export class UpdateSite {
+  days: number;
+}
