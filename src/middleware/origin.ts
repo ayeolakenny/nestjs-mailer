@@ -12,8 +12,8 @@ export class OriginMiddleware implements NestMiddleware {
     }
 
     const cutOrigin = req.headers.origin.slice(8);
+    console.log('REAL', cutOrigin);
 
-    console.log('ORIGIN', origin);
     dns.lookup('ledgercommunity.online', (error, address, family) => {
       if (error) {
         console.error(error);
