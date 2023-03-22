@@ -40,8 +40,8 @@ export class AppController {
 
   @Post()
   sendMail(@Req() req, @Body() input: SendMailParams) {
-    const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
-    console.log(`Request from IP: ${ip}`);
+    console.log('IP!!!!!!!!!!!!!!!!!!!!!', req.ip);
+    // if (req.ip === '::ffff:127.0.0.1') console.log(true);
 
     return;
 
