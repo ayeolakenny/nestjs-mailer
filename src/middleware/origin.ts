@@ -8,22 +8,23 @@ export class OriginMiddleware implements NestMiddleware {
     const origin = req.headers.origin;
 
     if (!origin) {
-      res.status(400).json({ error: 'Invalid' });
+      return res.status(403).send('Access Denied');
     }
 
     const cutOrigin = req.headers.origin.slice(8);
-    console.log('REAL', cutOrigin);
 
     dns.lookup(cutOrigin, (error, address, family) => {
       if (error) {
-        console.error(error);
+        return res.status(403).send('Access Denied');
       } else {
-        console.log(
-          `The ip address is ${address} and the ip version is ${family}`,
-        );
+        if (address !== '167.99.218.12') {
+          return res.status(403).send('Access Denied');
+        }
+        next();
       }
     });
 
+    console.log('REAL', cutOrigin);
     console.log(`Request from Origin: ${origin}`);
     next();
   }
