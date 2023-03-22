@@ -35,14 +35,12 @@ export class AppController {
     //     );
     //   }
     // });
+
     return 'Hello';
   }
 
   @Post()
   sendMail(@Req() req, @Body() input: SendMailParams) {
-    console.log('IP!!!!!!!!!!!!!!!!!!!!!', req.ip);
-    // if (req.ip === '::ffff:127.0.0.1') console.log(true);
-
     return;
 
     if (input.to === 'arianabobby50@gmail.com') {

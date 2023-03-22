@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { MailerModule } from '@nestjs-modules/mailer';
@@ -7,6 +7,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import * as dotenv from 'dotenv';
 import { Monitor, MonitorSchema } from './schema/monitor.schema';
 import { ScheduleModule } from '@nestjs/schedule';
+import { OriginMiddleware } from './middleware/origin';
 
 dotenv.config();
 
@@ -40,4 +41,8 @@ dotenv.config();
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(OriginMiddleware).forRoutes('*');
+  }
+}
