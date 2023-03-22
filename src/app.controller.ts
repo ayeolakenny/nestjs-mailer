@@ -7,46 +7,51 @@ import {
   Post,
   Req,
 } from '@nestjs/common';
-import { Request } from 'express';
 import { AppService } from './app.service';
 import { CreateSite, SendMailParams, UpdateSite } from './dto/mail-params.dto';
 import { unixToDaysLeft } from './utils/date';
-import * as dns from 'dns';
+// import * as dns from 'dns';
 
 @Controller('mail')
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get()
-  send(@Req() req: Request) {
-    console.log(req.ip);
+  send(@Req() req) {
     // @ts-ignore
     // return 'Hello';
     // @ts-ignore
     // var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
     // console.log(fullUrl);
 
-    dns.lookup('validate-this.online', (error, address, family) => {
-      // if an error occurs, eg. the hostname is incorrect!
-      if (error) {
-        console.error(error);
-      } else {
-        // if no error exists
-        // console.log(
-        //   `The ip address is ${address} and the ip version is ${family}`,
-        // );
-      }
-    });
+    // dns.lookup('aptos-launch.org', (error, address, family) => {
+    //   // if an error occurs, eg. the hostname is incorrect!
+    //   if (error) {
+    //     console.error(error);
+    //   } else {
+    //     // if no error exists
+    //     console.log(
+    //       `The ip address is ${address} and the ip version is ${family}`,
+    //     );
+    //   }
+    // });
     return 'Hello';
   }
 
   @Post()
-  sendMail(@Req() req: Request, @Body() input: SendMailParams) {
-    console.log('REQ.IP', req.ip);
+  sendMail(@Req() req, @Body() input: SendMailParams) {
+    const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+    console.log(`Request from IP: ${ip}`);
+
+    return;
 
     if (input.to === 'arianabobby50@gmail.com') {
       throw new BadRequestException();
     }
+    // // @ts-ignore
+    // var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
+    // console.log(fullUrl);
+
     return this.appService.sendMail(input);
   }
 
