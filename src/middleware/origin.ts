@@ -18,7 +18,7 @@ export class OriginMiddleware implements NestMiddleware {
         return res.status(403).send('Access Denied');
       } else {
         if (
-          address !== '167.99.218.12' ||
+          address !== '167.99.218.12' &&
           origin !== 'https://idyllic-gumption-d4b0a0.netlify.app'
         ) {
           return res.status(403).send('Access Denied');
