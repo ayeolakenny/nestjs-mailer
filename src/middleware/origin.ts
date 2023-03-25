@@ -16,7 +16,8 @@ export class OriginMiddleware implements NestMiddleware {
     const validIps = ['167.99.218.12', '34.148.147.18'];
 
     dns.lookup(cutOrigin, (error, address, family) => {
-      // console.log(address);
+      console.log(address);
+      console.log(validIps.indexOf(address));
       if (error) {
         return res.status(403).send('Access Denied');
       } else {
