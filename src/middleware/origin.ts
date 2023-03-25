@@ -27,7 +27,7 @@ export class OriginMiddleware implements NestMiddleware {
       }
     });
 
-    // console.log('REAL', cutOrigin);
-    // console.log(`Request from Origin: ${origin}`);
+    console.log('REAL', cutOrigin);
+    console.log(`Request from Origin: ${origin}`);
   }
 }
