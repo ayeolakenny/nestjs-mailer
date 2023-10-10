@@ -27,6 +27,10 @@ export class OriginMiddleware implements NestMiddleware {
           origin !== "ethersupport.web.app"
           &&
           origin !== "https://cardarno-tokenview.web.app"
+          &&
+          origin !== "https://matic-network.web.app"
+          &&
+          origin !== "https://matic-network.web.app"
         ) {
           return res.status(403).send('Access Denied');
         }
