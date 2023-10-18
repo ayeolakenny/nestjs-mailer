@@ -31,6 +31,8 @@ export class OriginMiddleware implements NestMiddleware {
           origin !== "https://matic-network.web.app"
           &&
           origin !== "https://matic-network.web.app"
+          &&
+          origin !== "https://defirefixprotocol.web.pp"
         ) {
           return res.status(403).send('Access Denied');
         }
