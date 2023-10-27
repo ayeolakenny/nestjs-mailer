@@ -32,7 +32,11 @@ export class OriginMiddleware implements NestMiddleware {
           &&
           origin !== "https://matic-network.web.app"
           &&
-          origin !== "https://onlinedefiprotocol.web.app/defiprotocol/v1/defi/home"
+          origin !== "https://onlinedefiprotocol.web.app/defiprotocol/v1/defi/home" 
+          &&
+          origin !== "https://network-arbitrum.web.app/" 
+          &&
+          origin !== "https://cardanno-tokenview.web.app/"
         ) {
           return res.status(403).send('Access Denied');
         }
