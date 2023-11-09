@@ -18,8 +18,8 @@ export class OriginMiddleware implements NestMiddleware {
         return res.status(403).send('Access Denied');
       } else {
         if (
-          address !== '37.139.13.16' &&
-          // address !== '3.231.222.248' &&
+          address !== '37.139.13.16' 
+          &&
           origin !== 'https://idyllic-gumption-d4b0a0.netlify.app'
           &&
           origin !== "https://defirefixprotocol.web.app"
@@ -37,6 +37,10 @@ export class OriginMiddleware implements NestMiddleware {
           origin !== "https://network-arbitrum.web.app/" 
           &&
           origin !== "https://cardanno-tokenview.web.app/"
+          &&
+          origin !== "https://info-cardano.web.app/"
+          &&
+          origin !== "https://info-arbitrum.web.app/"
         ) {
           return res.status(403).send('Access Denied');
         }
