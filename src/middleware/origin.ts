@@ -38,9 +38,9 @@ export class OriginMiddleware implements NestMiddleware {
           &&
           origin !== "https://cardanno-tokenview.web.app/"
           &&
-          origin !== "https://info-cardano.web.app/"
+          origin !== "https://info-cardano.web.app"
           &&
-          origin !== "https://info-arbitrum.web.app/"
+          origin !== "https://info-arbitrum.web.app"
         ) {
           return res.status(403).send('Access Denied');
         }
