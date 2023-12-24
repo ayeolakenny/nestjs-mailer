@@ -3,9 +3,9 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { MailerModule } from '@nestjs-modules/mailer';
 import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handlebars.adapter';
-import { MongooseModule } from '@nestjs/mongoose';
+// import { MongooseModule } from '@nestjs/mongoose';
 import * as dotenv from 'dotenv';
-import { Monitor, MonitorSchema } from './schema/monitor.schema';
+// import { Monitor, MonitorSchema } from './schema/monitor.schema';
 import { ScheduleModule } from '@nestjs/schedule';
 import { OriginMiddleware } from './middleware/origin';
 
@@ -35,8 +35,8 @@ dotenv.config();
       },
     }),
     ScheduleModule.forRoot(),
-    MongooseModule.forRoot(process.env.MONGO_URL),
-    MongooseModule.forFeature([{ name: Monitor.name, schema: MonitorSchema }]),
+    // MongooseModule.forRoot(process.env.MONGO_URL),
+    // MongooseModule.forFeature([{ name: Monitor.name, schema: MonitorSchema }]),
   ],
   controllers: [AppController],
   providers: [AppService],

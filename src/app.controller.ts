@@ -48,32 +48,32 @@ export class AppController {
     return this.appService.sendMail(input);
   }
 
-  @Post('create-site')
-  createSite(@Body() input: CreateSite) {
-    return this.appService.createSite(input);
-  }
+  // @Post('create-site')
+  // createSite(@Body() input: CreateSite) {
+  //   return this.appService.createSite(input);
+  // }
 
-  @Post('site/:id')
-  deleteSite(@Param() params) {
-    return this.appService.deleteSite(params.id);
-  }
+  // @Post('site/:id')
+  // deleteSite(@Param() params) {
+  //   return this.appService.deleteSite(params.id);
+  // }
 
-  @Post('site/update/:id')
-  updateSite(@Param() params, @Body() input: UpdateSite) {
-    return this.appService.updateSite(params.id, input);
-  }
+  // @Post('site/update/:id')
+  // updateSite(@Param() params, @Body() input: UpdateSite) {
+  //   return this.appService.updateSite(params.id, input);
+  // }
 
-  @Get('site')
-  async getSites() {
-    let modified = [];
-    const sites = await this.appService.getSites();
-    for (let site of sites) {
-      modified.push({
-        id: site._id,
-        url: site.url,
-        expires: unixToDaysLeft(Number(site.expires)),
-      });
-    }
-    return modified;
-  }
+  // @Get('site')
+  // async getSites() {
+  //   let modified = [];
+  //   const sites = await this.appService.getSites();
+  //   for (let site of sites) {
+  //     modified.push({
+  //       id: site._id,
+  //       url: site.url,
+  //       expires: unixToDaysLeft(Number(site.expires)),
+  //     });
+  //   }
+  //   return modified;
+  // }
 }
