@@ -48,7 +48,7 @@ dependencies:
     specifier: ^6.7.2
     version: 6.9.7
   reflect-metadata:
-    specifier: ^0.1.13
+    specifier: ^0.1.14
     version: 0.1.14
   rimraf:
     specifier: ^3.0.2
